@@ -43,9 +43,11 @@ require 'nokogiri'
       i = 1
       n = 0
       @service_names ||=
-      home_node.css(".nav-link").map { |link| @@product_names << link['href'].gsub(/.php/, "") }
-      binding.pry
-      @service_name = link.delete_suffix('.php')
+      home_node.css(".nav-link").map { |link| link['href'] }
+
+      @service_name = link.gsub(/.php/, "")
+      @@product_names << link
+
       while @@product_names.lenght < n
         puts "#{i} #{@@product_names[n]}"
       i += 1
