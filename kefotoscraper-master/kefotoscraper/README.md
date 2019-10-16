@@ -1,2 +1,0 @@
-# kefotoscraper
-final project
