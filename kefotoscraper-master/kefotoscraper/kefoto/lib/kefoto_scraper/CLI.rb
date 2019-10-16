@@ -41,29 +41,29 @@ binding.pry
     #      Nokogiri::HTML(PAGE_URL)
     # end
 
-    def service_names
-      @service_names = home_html.css(".nav-link").map { |link| link['href'] }.to_s.gsub(/.php/, "")
-      name_array = @service_names.split(",")
-      name_array.each do |pr|
-
-      @@product_names << pr
-
+def service_names
+      @service_names = home_html.css(".nav-link").map do
+        |link| link['href'].to_s.gsub(/.php/, "")
+      end
+      @service_names.each do |pr|
+        @@product_names << pr
+      end
     end
-  end
 
-    # def list_products
-    #   i = 1
-    #   n = 0
-    #
-    #   while @@product_names.length < n
-    #     @@product_names.each do |list_item|
-    #
-    #     puts "#{i} #{list_item[n]}"
-    #   i += 1
-    #   n += 1
-    #   end
-    #  end
-# end
+     def list_products
+       i = 1
+       n = 0
+    
+       while @@product_names.length < n
+        @@product_names.each do |list_item|
+    
+         puts "#{i} #{list_item[n]}"
+       i += 1
+       n += 1
+       end
+      end
+   end
+    
      def view_price_range
        price_range = []
        @service_links.each do |link|
