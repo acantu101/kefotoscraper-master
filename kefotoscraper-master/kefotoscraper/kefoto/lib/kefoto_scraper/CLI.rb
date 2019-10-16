@@ -46,7 +46,7 @@ require 'nokogiri'
       home_node.css(".nav-link").map { |link| link['href'] }
 
       @service_name = link.gsub(/.php/, "")
-      @@product_names << link
+      @@product_names << @service_names
 
       while @@product_names.lenght < n
         puts "#{i} #{@@product_names[n]}"
