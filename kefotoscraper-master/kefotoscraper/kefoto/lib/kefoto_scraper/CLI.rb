@@ -80,8 +80,5 @@ def service_names
         home_html.css(".nav-item").map { |link| link['href'] }
     end
 
-    def root_path
-        "https://kefotos.mx/"
-    end
 end
 end
