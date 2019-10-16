@@ -1,3 +1,3 @@
-# module KefotoScraper
-#   VERSION = "0.1.0"
-# end
+ module KefotoScraper
+  VERSION = "0.1.0"
+ end

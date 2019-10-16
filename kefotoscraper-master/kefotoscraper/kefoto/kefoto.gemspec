@@ -1,10 +1,10 @@
 lib = File.expand_path("lib", __dir__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require "kefoto/version"
+require "kefoto_scraper/version.rb"
 
 Gem::Specification.new do |spec|
   spec.name          = "kefoto"
-  spec.version       = Kefoto::VERSION
+  spec.version       = KefotoScraper::VERSION
   spec.authors       = ["Alejandra Cantu"]
   spec.email         = ["alejandra.cantu13@gmail.com"]
 
@@ -37,4 +37,3 @@ Gem::Specification.new do |spec|
 
 
 end
-
