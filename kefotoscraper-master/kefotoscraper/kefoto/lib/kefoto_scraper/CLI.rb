@@ -6,11 +6,13 @@ require 'nokogiri'
 
   class KefotoScraper::CLI
       @@product_names =[]
+      PAGE_URL = "https://kefotos.mx/"
+
 
     def call
-
+binding.pry
     puts "These are the services that Kefoto offers:"
-    service_names
+    #list_products
     puts "which service would you like to select?"
     @selection = gets.chomp
     view_price_range
@@ -27,34 +29,41 @@ require 'nokogiri'
         # @home_html ||=
         #     HTTParty.get root_path
 
-          @page = Nokogiri::HTML(open("https://kefotos.mx"))
-          @page
+        Nokogiri::HTML(open(PAGE_URL))
+
 
     end
-
-    # TODO: read about ruby memoization
-    def home_node
-
-        @home_node ||=
-         Nokogiri::HTML(home_html)
-    end
+    #
+    # # TODO: read about ruby memoization
+    # def home_node
+    #
+    #     @home_node ||=
+    #      Nokogiri::HTML(PAGE_URL)
+    # end
 
     def service_names
-      i = 1
-      n = 0
-      @service_names ||=
-      home_node.css(".nav-link").map { |link| link['href'] }
+      @service_names = home_html.css(".nav-link").map { |link| link['href'] }.to_s.gsub(/.php/, "")
+      name_array = @service_names.split(",")
+      name_array.each do |pr|
 
-      @service_name = link.gsub(/.php/, "")
-      @@product_names << @service_names
+      @@product_names << pr
 
-      while @@product_names.lenght < n
-        puts "#{i} #{@@product_names[n]}"
-      i += 1
-      n += 1
     end
-     end
+  end
 
+    # def list_products
+    #   i = 1
+    #   n = 0
+    #
+    #   while @@product_names.length < n
+    #     @@product_names.each do |list_item|
+    #
+    #     puts "#{i} #{list_item[n]}"
+    #   i += 1
+    #   n += 1
+    #   end
+    #  end
+# end
      def view_price_range
        price_range = []
        @service_links.each do |link|
@@ -68,7 +77,7 @@ require 'nokogiri'
 
     def service_links
         @service_links ||=
-        home_node.css(".nav-link").map { |link| link['href'] }
+        home_html.css(".nav-item").map { |link| link['href'] }
     end
 
     def root_path
